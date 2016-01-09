@@ -43,7 +43,7 @@
 
           $cookies.put('token', token);
           $cookies.put('userName', authObj.userName);
-          $cookies.put('password', authObj.pass);
+          /*$cookies.put('password', authObj.pass);*/
 
           $state.go('main.Home');
         }

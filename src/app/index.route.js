@@ -6,7 +6,8 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
+  function routerConfig($stateProvider, $urlRouterProvider,$httpProvider) {
+    $httpProvider.interceptors.push('testInterceptor');
     $stateProvider
 
       .state('/', {
@@ -72,6 +73,30 @@
         templateUrl: 'app/aboutUs/aboutUs.html',
         controller: 'AboutUsController',
         controllerAs: 'abtus'
+      })
+
+      .state('main.movies', { // state for showing all movies
+        url: 'movies',
+        templateUrl: 'app/movies/movies.html',
+        controller: 'MovieListController'
+      })
+
+      .state('main.viewMovie', { //state for showing single movie
+        url: 'movies/:id/view',
+        templateUrl: 'app/movies/movie-view.html',
+        controller: 'MovieViewController'
+      })
+
+      .state('main.newMovie', { //state for adding a new movie
+        url: 'movies/new',
+        templateUrl: 'app/movies/movie-add.html',
+        controller: 'MovieCreateController'
+      })
+
+      .state('main.editMovie', { //state for updating a movie
+        url: 'movies/:id/edit',
+        templateUrl: 'app/movies/movie-edit.html',
+        controller: 'MovieEditController'
       });
 
     $urlRouterProvider.otherwise('/');

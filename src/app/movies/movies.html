@@ -1,0 +1,40 @@
+<div class="main-fab">
+  <md-button class="md-fab md-primary md-hue-2" ng-click="addNew()">+</md-button>
+</div>
+
+<md-toolbar layout="column" class="md-mini md-hue-1">
+  <div class="md-toolbar-tools">
+    <div layout="row" flex="flex" class="fill-height">
+
+      <div class="md-toolbar-item " style="padding-left:88px;">
+        <span>Movies</span>
+      </div>
+
+    </div>
+  </div>
+</md-toolbar>
+
+<md-content flex class="md-padding">
+
+<table class="table movietable">
+    <tr>
+        <td><h3>All Movies</h3></td>
+        <td></td>
+    </tr>
+    <tr ng-repeat="movie in movies">
+        <td>{{movie.title}}</td>
+        <td>
+            <a class="btn btn-info" ui-sref="main.viewMovie({id:movie._id})">View</a>
+            <a class="btn btn-danger"  ng-click="deleteMovie(movie)">Delete</a>
+        </td>
+    </tr>
+</table>
+  </md-content>
+
+<style>
+
+  .main-fab {
+    position:absolute;
+    top:95px;
+  }
+</style>
