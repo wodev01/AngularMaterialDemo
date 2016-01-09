@@ -1,0 +1,76 @@
+<md-toolbar layout="column" class="md-mini md-hue-1">
+  <div class="md-toolbar-tools">
+    <div layout="row" flex="flex" class="fill-height">
+
+      <div class="md-toolbar-item md-breadcrumb">
+        <span>Employee</span>
+      </div>
+
+    </div>
+  </div>
+</md-toolbar>
+
+<md-content flex class="md-padding">
+
+  <form name="myForm" novalidate class="form-horizontal">
+    <!-- Form Name -->
+    <legend></legend>
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="name" class="control-label col-sm-2">Name</label>
+          <input type="text" name="name" id="name" ng-model="emp.newcontact.name" class="form-control" required/>
+              <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+              <span ng-show="myForm.name.$error.required">Name is required.</span>
+              </span>
+        </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="email" class="control-label col-sm-2">Email</label>
+          <input type="email" name="email" id="email" ng-model="emp.newcontact.email"class="form-control" required/>
+              <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+              <span ng-show="myForm.email.$error.required">Email is required.</span>
+              <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+              </span>
+      </md-input-container>
+    </div>
+
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="salary" class="control-label col-sm-2">Salary</label>
+          <input type="number" name="salary" id="salary" ng-model="emp.newcontact.salary" class="form-control" required/>
+              <span style="color:red" ng-show="myForm.salary.$dirty && myForm.salary.$invalid">
+              <span ng-show="myForm.salary.$error.required">salary is required.</span>
+              </span>
+        </md-input-container>
+    </div>
+    <!--(123) 456 7899
+        (123).456.7899
+        (123)-456-7899
+        123-456-7899
+        123 456 7899
+        1234567899
+        -->
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="phone" class="control-label col-sm-2">Phone</label>
+          <input class="form-control" type="text" name="phone" id="phone" ng-model="emp.newcontact.phone"  required
+                 ng-pattern="/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/" />
+              <span style="color:red" ng-show="myForm.phone.$error.pattern">
+                  Not a valid Phone number</span>
+              <span style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+              <span ng-show="myForm.phone.$error.required">Phone is required.</span>
+              </span>
+        </md-input-container>
+    </div>
+
+    <input type="hidden" ng-model="newcontact.id" />
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <md-button ng-disabled="myForm.$invalid || dataLoading" class="md-raised md-primary" ng-click="emp.saveContact()">{{emp.buttonText}}</md-button>
+        <!--<input type="button" value="Save" ng-click="saveContact()" />-->
+      </div>
+    </div>
+  </form>
+
+</md-content>

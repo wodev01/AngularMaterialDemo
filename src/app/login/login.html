@@ -1,0 +1,52 @@
+<div ng-include="'app/header/header.html'"></div>
+
+<md-content  flex class="md-padding">
+  <form class="form-signin" name="myForm" novalidate>
+    <h2 class="form-signin-heading">Please login</h2>
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" id="email" name="email" ng-model="authObj.userName" class="form-control" required autofocus>
+          <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+          <span ng-show="myForm.email.$error.required">Email is required.</span>
+          <span ng-show="myForm.email.$error.email">Invalid Email address.</span>
+          </span>
+      </md-input-container>
+    </div>
+
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" ng-model="authObj.pass" class="form-control" ng-minlength="6" required>
+          <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+          <span ng-show="myForm.password.$error.required">Password is required.</span>
+          <span ng-show="myForm.password.$error.minlength">Minimum 6 charcter is required.</span>
+          </span>
+        </md-input-container>
+    </div>
+    <p class='text-danger' ng-bind="login.errorMsg" style="color: red;text-align: center;" ></p>
+    <p style="text-align: center;">
+    <img ng-if="login.dataLoading"
+         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    </p>
+      <md-button layout-fill ng-disabled="myForm.$invalid" ng-hide="login.dataLoading" class="md-raised md-primary" ng-click="login.LoginCheck(authObj)">Login
+    </md-button>
+  </form>
+</md-content>
+
+<style>
+  * { box-sizing:border-box; }
+  .form-signin {
+    max-width:500px;
+    padding: 3em 2em 2em 2em;
+    margin: 4em auto;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+  }
+  .form-signin .form-signin-heading {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+</style>
+

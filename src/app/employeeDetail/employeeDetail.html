@@ -1,0 +1,288 @@
+<div class="main-fab">
+  <md-button class="md-fab md-primary md-hue-2" ng-click="empDetail.view($event)">+</md-button>
+</div>
+
+<md-toolbar layout="column" class="md-mini md-hue-1"><span flex="flex"></span>
+  <div class="md-toolbar-tools">
+    <div layout="row" flex="flex" class="fill-height">
+      <div ng-hide="toggleSearch" class="md-toolbar-item md-breadcrumb">
+        <span>Employee Detail</span>
+      </div>
+      <span flex="flex" ng-hide="toggleSearch"></span>
+      <md-input-container flex="flex" style="padding-left:88px;" ng-show="toggleSearch">
+        <input type="text" ng-model="searchKeyword"/>
+      </md-input-container>
+      <div layout="row" class="md-toolbar-item md-tools">
+        <a  ng-click="toggleSearch = !toggleSearch" class="md-button md-default-theme"><i class="material-icons">search</i></a>
+      </div>
+    </div>
+  </div>
+</md-toolbar>
+
+<div ng-cloak="">
+      <md-content >
+        <md-tabs md-dynamic-height md-border-bottom class="md-primary" >
+          <md-tab label="List" >
+            <md-content layout="column" flex="flex" ng-click="toggleSearch=false" layout-padding>
+              <md-table>
+                <div id="md-table-template" >
+                  <table  class="md-table">
+                    <thead>
+                    <tr class="md-table-headers-row">
+                      <th ng-repeat="h in empDetail.headers" class="md-table-header">
+                        <span>{{h.name}}</span>
+                      </th>
+                      <th class="md-table-header"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr ng-repeat="contact in empDetail.contacts | filter: searchKeyword" class="md-table-content-row">
+                      <td class="md-table-content">{{ contact.id }}</td>
+                      <td class="md-table-content">{{ contact.name }}</td>
+                      <td class="md-table-content">{{ contact.email }}</td>
+                      <td class="md-table-content">{{ contact.salary }}</td>
+                      <td class="md-table-content">{{ contact.phone }}</td>
+                      <td>
+                        <md-button class="md-icon-button md-primary" aria-label="Edit">
+                          <md-tooltip md-direction="left">
+                            Edit
+                          </md-tooltip>
+                          <md-icon md-font-library="material-icons" ng-click="empDetail.edit(contact.id)">mode_edit</md-icon>
+                        </md-button>|
+
+                        <md-button class="md-icon-button md-primary" aria-label="Delete">
+                          <md-tooltip md-direction="right">
+                            Delete
+                          </md-tooltip>
+                          <md-icon md-font-library="material-icons" ng-click="empDetail.delete($event,contact.id)">delete</md-icon>
+                        </md-button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td> <b>Total : {{ empDetail.contacts|sumProduct:'salary' }}</b></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </md-table>
+            </md-content>
+          </md-tab>
+          <md-tab label="Grid">
+            <md-content class="md-padding" layout="row" layout-wrap layout-align="left start" layout-xs="column" >
+              <div flex="50" flex-xs="100" layout="column" ng-repeat="contact in empDetail.contacts">
+
+                <md-card style="text-align: center">
+
+                  <md-card-title >
+                    <md-card-title-text >
+                      <span class="md-headline" >{{contact.name}}</span>
+                    </md-card-title-text>
+                  </md-card-title>
+
+                  <md-card-content>
+                    <md-divider></md-divider>
+                    <md-button class="md-fab md-primary md-hue-2" aria-label="Profile">
+                      <md-icon md-font-library="material-icons">person_outline</md-icon>
+                    </md-button>
+
+                    <md-content><i class="material-icons">email</i> {{contact.email}}</md-content>
+                    <md-content><i class="material-icons">attach_money</i>  {{contact.salary}}</md-content>
+                    <md-content><i class="material-icons">perm_phone_msg</i>  {{contact.phone}}</md-content>
+                  </md-card-content>
+
+                  <md-card-actions layout="row" layout-align="center">
+                    <md-button class="md-icon-button md-primary" aria-label="Edit">
+                      <md-tooltip md-direction="left">
+                        Edit
+                      </md-tooltip>
+                      <md-icon md-font-library="material-icons" ng-click="empDetail.view($event,contact.id)">mode_edit</md-icon>
+                    </md-button>
+
+                    <md-button class="md-icon-button md-primary" aria-label="Delete">
+                      <md-tooltip md-direction="right">
+                        Delete
+                      </md-tooltip>
+                      <md-icon md-font-library="material-icons" ng-click="empDetail.delete($event,contact.id)">delete</md-icon>
+                    </md-button>
+                  </md-card-actions>
+
+                </md-card>
+              </div>
+            </md-content>
+          </md-tab>
+      </md-content>
+</div>
+
+<div>
+
+
+
+</div>
+<style>
+    a {
+      text-decoration: none;
+    }
+
+    i {
+      vertical-align: middle;
+      font-size: 24px;
+    }
+
+    .main-fab {
+      position:absolute;
+      top:95px;
+    }
+
+    .md-breadcrumb {
+      padding-left:88px;
+    }
+
+    .md-table {
+      min-width: 100%;
+      border-collapse: collapse;
+    }
+
+    .md-table tbody tr:hover, .md-table tbody tr:focus {
+      cursor:pointer;
+      /*background-color:lightskyblue;*/
+    }
+
+    .md-table-header {
+      border-bottom: 1px solid rgb(230,230,230);
+      color: rgb(130,130,130);
+      text-align: left;
+      font-size: 0.75em;
+      font-weight: 700;
+      padding: 16px 16px 16px 0;
+    }
+
+    .md-table-header a{
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .md-table-content {
+      white-space: nowrap;
+      font-size: 0.8em;
+      padding: 16px 16px 16px 0;
+      height: 30px;
+    }
+
+    .md-table-td-more {
+      max-width:72px;
+      width:72px;
+      padding:16px;
+    }
+
+    .md-table-thumbs {
+      max-width: 104px;
+      width: 104px;
+      padding: 16px 32px;
+    }
+
+    .md-table-thumbs div {
+      overflow:hidden;
+      width: 40px;
+      height:40px;
+      border-radius:20px;
+      border: 1px solid rgba(0,0,0,0.2);
+      background-size:cover;
+      box-shadow: 0 8px 10px rgba(0,0,0,.3);
+      -webkit-box-shadow: 0 8px 10px rgba(0,0,0,.1);
+    }
+
+    .md-table-footer {
+      height:40px;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    .md-table-count-info {
+      line-height:40px;
+      font-size:.75em;
+    }
+
+    .md-table-footer-item {
+      width: 40px;
+      height: 40px;
+      vertical-align:middle;
+    }
+
+    .md-table-active-page {
+      font-weight: 700;
+    }
+
+    .bold {
+      font-weight: 700;
+    }
+
+    .grey {
+      color: grey;
+    }
+
+    md-input-container.md-default-theme .md-input {
+      color: white;
+      border-color: white;
+      margin-top: 24px;
+    }
+
+  </style>
+<!--  <div class="main-fab">
+    <md-button class="md-fab md-primary md-hue-2" ng-click="empDetail.view($event)">+</md-button>
+  </div>-->
+
+<!--<md-content flex class="md-padding">
+  <div layout="row" layout-xs="column" style="margin-bottom: 10px" >
+    <md-input-container flex="80">
+      <label>Search</label>
+      <input type="text" class="form-control"  ng-model="searchKeyword" />
+    </md-input-container>
+    <div flex="15">
+      <md-button class="md-raised md-primary" style="width: 100%;" ng-click="empDetail.view($event)" >Add Employee</md-button>
+    </div>
+  </div>
+
+  <div layout="row" >
+    <md-input-container flex="100">
+      <table  border="1" style="width: 100%">
+        <thead style="background-color: #2E6DA4; color: #ffffff">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Salary</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="contact in empDetail.contacts | filter: searchKeyword" >
+          <td>{{ contact.id }}</td>
+          <td>{{ contact.name }}</td>
+          <td>{{ contact.email }}</td>
+          <td>{{ contact.salary }}</td>
+          <td>{{ contact.phone }}</td>
+          <td>
+            <a href="javscript:void(0);" uib-tooltip="Edit" tooltip-placement="left"ng-click="empDetail.edit(contact.id)"><i class="material-icons">mode_edit</i></a> |
+            <a href="javscript:void(0);" uib-tooltip="Delete" tooltip-placement="right"ng-click="empDetail.delete($event,contact.id)"><i class="material-icons">delete</i></a>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td> <b>Total : {{ contacts|sumProduct:'salary' }}</b></td>
+          <td></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
+    </md-input-container>
+  </div>
+</md-content>-->

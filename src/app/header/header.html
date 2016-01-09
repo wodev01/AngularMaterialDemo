@@ -1,0 +1,16 @@
+<md-toolbar layout="row" ng-controller="HeaderController">
+  <div class="md-toolbar-tools">
+    <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
+      <ng-md-icon icon="menu"></ng-md-icon>
+    </md-button>
+    <h1  class="md-toolbar-tools" ng-bind="uname ? 'Hello' : 'Login' "></h1>
+
+    <div layout="row" class="md-toolbar-item md-tools" ng-if="uname">
+
+      <a ng-click="signout()" class="md-button md-default-theme">
+        <span>{{uname}}</span>
+        <ng-md-icon icon="settings_power"></ng-md-icon>
+      </a>
+    </div>
+  </div>
+</md-toolbar>

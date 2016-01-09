@@ -1,0 +1,86 @@
+<md-dialog aria-label="Create new Employee"  ng-cloak>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h3 style="display: inline-block" ng-bind="employeename ? employeename : 'Create new Employee' "></h3>
+        <span flex></span>
+        <md-button class="md-icon-button"  ng-click="edit()" ng-hide="employeename ? false : true">
+          <i class="material-icons">edit</i>
+        </md-button>
+        <md-button class="md-icon-button"  ng-click="cancel()">
+          <i class="material-icons">close</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content flex class="md-padding">
+      <form name="myForm" novalidate>
+        <fieldset ng-disabled="employeename ? editable : false" style="border: none;">
+          <div class="form-group">
+            <md-input-container >
+              <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" id="name" ng-model="emp.name" required />
+                    <div style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                    <div ng-show="myForm.name.$error.required">Name is required.</div>
+                    </div>
+                 <!-- <div ng-messages="myForm.name.$dirty && myForm.name.$invalid">
+                    <div ng-show="myForm.name.$error.required">Name is required.</div>
+                  </div>-->
+            </md-input-container>
+            </div>
+          <div class="form-group">
+            <md-input-container >
+              <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="email" ng-model="emp.email"  required/>
+                    <div style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                    <div ng-show="myForm.email.$error.required">Email is required.</div>
+                    <div ng-show="myForm.email.$error.email">Invalid email address.</div>
+                    </div>
+            </md-input-container>
+            </div>
+          <div class="form-group">
+            <md-input-container >
+              <label for="salary" >Salary</label>
+                <input type="number" class="form-control" name="salary" id="salary" ng-model="emp.salary"  required/>
+                    <div style="color:red" ng-show="myForm.salary.$dirty && myForm.salary.$invalid">
+                    <div ng-show="myForm.salary.$error.required">salary is required.</div>
+                    </div>
+            </md-input-container>
+            </div>
+          <div class="form-group">
+            <md-input-container>
+              <label for="phone" >Phone</label>
+                <input type="text" class="form-control" name="phone" id="phone" ng-model="emp.phone"
+                       ng-pattern="/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/"  required/>
+                    <div style="color:red" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+                    <div ng-show="myForm.phone.$error.required">Phone is required.</div>
+                    <div style="color:red" ng-show="myForm.phone.$error.pattern">
+                        Not a valid Phone number</div>
+                    </div>
+            </md-input-container>
+            </div>
+          <div class="form-group">
+            <md-input-container layout="row">
+              <md-button ng-disabled="myForm.$invalid" class="md-raised md-primary" ng-click="ok(emp)" layout-fill ng-bind="employeename ? 'Save' : 'Create' ">
+              </md-button>
+
+              <md-button class="md-raised md-primary" ng-click="cancel()" layout-fill >
+                Cancel
+              </md-button>
+          </md-input-container>
+            </div>
+        </fieldset>
+      </form>
+    </md-dialog-content>
+
+    <!--<md-dialog-actions layout="row" >
+      <md-button ng-disabled="myForm.$invalid " class="md-raised md-primary" ng-click="ok(emp)" layout-fill ng-bind="employeename ? 'Save' : 'Create' ">
+      </md-button>
+
+      <md-button class="md-raised md-primary" ng-click="cancel()" layout-fill >
+        Cancel
+      </md-button>
+    </md-dialog-actions>
+-->
+
+</md-dialog>

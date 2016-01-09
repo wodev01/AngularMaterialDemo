@@ -1,0 +1,31 @@
+<!--<md-toolbar>
+
+
+  <div class="md-toolbar-tools">
+    <md-button ng-click="test.toggleSidenav('left')" hide-gt-md aria-label="Menu">
+      <ng-md-icon icon="menu"></ng-md-icon>
+    </md-button>
+    <h3>
+      home
+    </h3>
+    <span flex></span>
+  </div>
+</md-toolbar>-->
+<md-toolbar layout="column" class="md-mini md-hue-1">
+  <div class="md-toolbar-tools">
+    <div layout="row" flex="flex" class="fill-height">
+
+      <div class="md-toolbar-item md-breadcrumb">
+        <span>Home</span>
+      </div>
+
+    </div>
+  </div>
+</md-toolbar>
+
+<div  class="md-padding">
+  <div ui-grid-pagination ui-if="gridOptions.data.length>0" id="grid1" ui-grid="gridOptions" class="grid" ui-grid-auto-resize ng-style="getTableHeight()"></div>
+  <!--<div ui-grid="home.gridOptions"  ui-grid-selection class="grid" ></div>-->
+  <!--ui-grid-pagination-->
+  <!-- ng-style="{height: (gridOptions.data.length*30)+32+'px'}"-->
+</div>
