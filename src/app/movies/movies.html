@@ -1,40 +1,85 @@
-<div class="main-fab">
-  <md-button class="md-fab md-primary md-hue-2" ng-click="addNew()">+</md-button>
-</div>
 
-<md-toolbar layout="column" class="md-mini md-hue-1">
-  <div class="md-toolbar-tools">
-    <div layout="row" flex="flex" class="fill-height">
 
-      <div class="md-toolbar-item " style="padding-left:88px;">
-        <span>Movies</span>
-      </div>
-
-    </div>
+<div class="movieView">
+  <div class="main-fab">
+    <md-button class="md-fab md-primary md-hue-2" ng-click="addNew()">+</md-button>
   </div>
-</md-toolbar>
 
-<md-content flex class="md-padding">
+  <md-toolbar layout="column" class="md-mini md-hue-1">
+    <div class="md-toolbar-tools">
+      <div layout="row" flex="flex" class="fill-height">
 
-<table class="table movietable">
-    <tr>
-        <td><h3>All Movies</h3></td>
-        <td></td>
-    </tr>
-    <tr ng-repeat="movie in movies">
-        <td>{{movie.title}}</td>
-        <td>
-            <a class="btn btn-info" ui-sref="main.viewMovie({id:movie._id})">View</a>
-            <a class="btn btn-danger"  ng-click="deleteMovie(movie)">Delete</a>
-        </td>
-    </tr>
-</table>
+        <div class="md-toolbar-item " style="padding-left:88px;">
+          <span>Movies</span>
+        </div>
+
+      </div>
+    </div>
+  </md-toolbar>
+
+  <md-content flex class="md-padding">
+    <md-table>
+      <div id="md-table-template" >
+        <table  class="md-table">
+          <thead>
+          <tr class="md-table-headers-row">
+            <th class="md-table-header">
+              <span>Title</span>
+            </th>
+            <th class="md-table-header">
+              <span>Director</span>
+            </th>
+            <th class="md-table-header">
+              <span>Release Year</span>
+            </th>
+            <th class="md-table-header">
+              <span>Movie Genre</span>
+            </th>
+            <th class="md-table-header">
+
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr ng-repeat="movie in movies" class="md-table-content-row">
+            <td class="md-table-content">{{movie.title}}</td>
+            <td class="md-table-content">{{movie.director}}</td>
+            <td class="md-table-content">{{movie.releaseYear}}</td>
+            <td class="md-table-content">{{movie.genre}}</td>
+            <td>
+              <md-button class="md-icon-button md-primary" aria-label="View">
+                <md-tooltip md-direction="left">
+                  View
+                </md-tooltip>
+                <md-icon md-font-library="material-icons" ng-click="viewMovie(movie)">remove_red_eye</md-icon>
+              </md-button>|
+
+              <md-button class="md-icon-button md-primary" aria-label="Delete">
+                <md-tooltip md-direction="right">
+                  Delete
+                </md-tooltip>
+                <md-icon md-font-library="material-icons" ng-click="deleteMovie(movie)">delete</md-icon>
+              </md-button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </md-table>
+    <!--<table class="table movietable">
+        <tr>
+            <td><h3>All Movies</h3></td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="movie in movies">
+            <td>{{movie.title}}</td>
+            <td>
+                <a class="btn btn-info" ui-sref="main.viewMovie({id:movie._id})">View</a>
+                <a class="btn btn-danger"  ng-click="deleteMovie(movie)">Delete</a>
+            </td>
+        </tr>
+    </table>-->
   </md-content>
 
-<style>
-
-  .main-fab {
-    position:absolute;
-    top:95px;
-  }
-</style>
+</div>

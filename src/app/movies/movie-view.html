@@ -1,25 +1,47 @@
-<table class="table movietable">
-    <tr>
-        <td><h3>Details for {{movie.title}}</h3></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Movie Title</td>
-        <td>{{movie.title}}</td>
-    </tr>
-    <tr>
-        <td>Director</td>
-        <td>{{movie.director}}</td>
-    </tr>
-    <tr>
-        <td>Release Year</td>
-        <td>{{movie.releaseYear}}</td>
-    </tr>
-    <tr>
-        <td>Movie Genre</td>
-        <td>{{movie.genre}}</td>
-    </tr>
-</table>
-<div>
-    <a class="btn btn-primary" ui-sref="main.editMovie({id:movie._id})">Edit</a>
-</div>
+
+<md-content flex class="md-padding movieView">
+  <md-table>
+    <div id="md-table-template" >
+      <table  class="md-table">
+        <thead>
+          <tr class="md-table-headers-row">
+            <th class="md-table-header">
+              <span><h1>Details for {{movie.title}}</h1></span>
+            </th>
+            <th class="md-table-header">
+              <span></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr class="md-table-content-row">
+            <td class="md-table-content grey">Movie Title :</td>
+            <td class="md-table-content">{{movie.title}}</td>
+          </tr>
+          <tr class="md-table-content-row">
+            <td class="md-table-content grey">Director :</td>
+            <td class="md-table-content">{{movie.director}}</td>
+          </tr >
+          <tr class="md-table-content-row">
+            <td class="md-table-content grey">Release Year:</td>
+            <td class="md-table-content">{{movie.releaseYear}}</td>
+          </tr>
+          <tr class="md-table-content-row">
+            <td class="md-table-content grey">Movie Genre:</td>
+            <td class="md-table-content">{{movie.genre}}</td>
+          </tr>
+
+          <!--<tr class="md-table-content-row">
+            <td class="md-table-content">{{movie.title}}</td>
+            <td class="md-table-content">{{movie.director}}</td>
+            <td class="md-table-content">{{movie.releaseYear}}</td>
+            <td class="md-table-content">{{movie.genre}}</td>
+          </tr>-->
+        </tbody>
+      </table>
+      <md-button class="md-raised md-primary" ng-click="editMovie(movie)">Edit</md-button>
+    </div>
+  </md-table>
+</md-content>
+

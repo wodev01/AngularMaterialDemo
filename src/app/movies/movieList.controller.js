@@ -19,5 +19,11 @@
       });
       /* }*/
     }
+
+    $scope.viewMovie = function(movie){
+      console.log(movie._id);
+      $state.go('main.viewMovie',{id: movie._id});
+      /*$state.go("main.Employee",{id: id});*/
+    }
   }
 })();

@@ -1,29 +1,27 @@
-<!--<md-toolbar layout="row">
-  <div class="md-toolbar-tools">
-    <md-button ng-click="main.toggleSidenav('left')" hide-gt-md aria-label="Menu">
-      <ng-md-icon icon="menu"></ng-md-icon>
-    </md-button>
-    <h1  class="md-toolbar-tools">Hello</h1>
-
-    <div layout="row" class="md-toolbar-item md-tools">
-
-      <a ng-click="main.signout()" class="md-button md-default-theme">
-        <span>{{main.uname}}</span>
-        <ng-md-icon icon="settings_power"></ng-md-icon>
-      </a>
-    </div>
-  </div>
-</md-toolbar>-->
 <div ng-include="'app/header/header.html'"></div>
 
 <div layout="row" flex class="content-wrapper" >
-  <md-sidenav  layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" >
-    <md-list>
-      <md-item >
-        <a ui-sref="main.Home" style="text-decoration:none;">
-          <md-list-item md-ink-ripple="#333" layout="row" layout-align="start center">
+
+  <!--<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+    <md-list class="muppet-list">
+      <md-item ng-repeat="it in main.sideNavItem">
+        <a ui-sref="{{it.uisref}}" style="text-decoration:none;">
+          <md-list-item md-ink-ripple="#333" layout="row" layout-align="start center" >&lt;!&ndash;ng-class="{'selected' : it === main.selected }"&ndash;&gt;
             <div class="inset">
-              <ng-md-icon icon="home"></ng-md-icon></div>
+              <ng-md-icon icon="{{it.icon}}"></ng-md-icon></div>
+            <div class="inset"> {{it.name}}</div>
+          </md-list-item>
+        </a>
+      </md-item>
+    </md-list>
+  </md-sidenav>-->
+
+  <md-sidenav  layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" >
+    <md-list class="muppet-list">
+      <md-item >
+        <a ui-sref="main.Home" style="text-decoration:none;" ng-class="main.getClass('/Home')">
+          <md-list-item md-ink-ripple="#333" layout="row" layout-align="start center" >
+            <div class="inset"><ng-md-icon icon="home"></ng-md-icon></div>
             <div class="inset">Home</div>
           </md-list-item>
         </a>
@@ -46,7 +44,7 @@
       </md-item>-->
 
       <md-item >
-        <a ui-sref="main.EmployeeDetail" style="text-decoration:none;">
+        <a ui-sref="main.EmployeeDetail" style="text-decoration:none;" ng-class="main.getClass('/EmployeeDetail')">
           <md-list-item md-ink-ripple="#333" layout="row" layout-align="start center">
             <div class="inset"><ng-md-icon icon="group"></ng-md-icon></div>
             <div class="inset">Employees</div>
@@ -55,7 +53,7 @@
       </md-item>
 
       <md-item>
-        <a ui-sref="main.Directive" style="text-decoration:none;">
+        <a ui-sref="main.Directive" style="text-decoration:none;" ng-class="main.getClass('/Directive')">
           <md-list-item md-ink-ripple="#333" layout="row" layout-align="start center">
             <div class="inset"><ng-md-icon icon="dashboard"></ng-md-icon></div>
             <div class="inset">Directive</div>
@@ -64,7 +62,7 @@
       </md-item>
 
       <md-item>
-        <a ui-sref="main.movies" style="text-decoration:none;">
+        <a ui-sref="main.movies" style="text-decoration:none;" ng-class="main.getClass('/movies')">
           <md-list-item md-ink-ripple="#333" layout="row" layout-align="start center">
             <div class="inset"><ng-md-icon icon="dashboard"></ng-md-icon></div>
             <div class="inset">Movie</div>
@@ -73,7 +71,7 @@
       </md-item>
 
       <md-item>
-        <a ui-sref="main.Promise" style="text-decoration:none;">
+        <a ui-sref="main.Promise" style="text-decoration:none;" ng-class="main.getClass('/Promise')">
           <md-list-item md-ink-ripple="#333" layout="row" layout-align="start center">
             <div class="inset"><ng-md-icon icon="dashboard"></ng-md-icon></div>
             <div class="inset">Promise</div>
@@ -85,7 +83,7 @@
        <!-- <md-button class="md-icon-button md-primary" aria-label="Settings">
           <md-icon>dashboard</md-icon>
         </md-button>-->
-        <a ui-sref="main.AboutUs" style="text-decoration:none;" >
+        <a ui-sref="main.AboutUs" style="text-decoration:none;" ng-class="main.getClass('/AboutUs')" >
           <md-list-item md-ink-ripple="#333" layout="row" layout-align="start center">
             <div class="inset"><ng-md-icon icon="dashboard" ></ng-md-icon></div>
             <div class="inset">About Us</div>
@@ -95,5 +93,12 @@
 
     </md-list>
   </md-sidenav>
-  <div layout="column" flex class="content-wrapper" id="primary-col" ui-view style="overflow: auto;"></div><!--style="overflow: auto;"-->
+  <div layout="column" flex class="content-wrapper" id="primary-col" ui-view style="overflow: auto;"></div>
 </div>
+
+<style>
+
+  a.active {
+    color: #03a9f4;
+  }
+</style>

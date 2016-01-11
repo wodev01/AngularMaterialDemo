@@ -33,6 +33,9 @@
       },{
         name: 'Phone',
         field: 'phone'
+      },{
+        name: 'Actions',
+        field: 'actions'
       }
     ];
 

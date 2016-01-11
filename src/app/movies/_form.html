@@ -1,3 +1,69 @@
+<md-toolbar layout="column" class="md-mini md-hue-1">
+  <div class="md-toolbar-tools">
+    <div layout="row" flex="flex" class="fill-height">
+
+      <div class="md-toolbar-item md-breadcrumb">
+        <span ng-bind="movie._id ? 'Edit Movie' : 'Add Movies'"></span>
+      </div>
+
+    </div>
+  </div>
+</md-toolbar>
+
+<md-content flex class="md-padding">
+
+  <form name="myForm" novalidate class="form-horizontal">
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="title" class="control-label col-sm-2">title</label>
+        <input type="text" ng-model="movie.title" class="form-control" id="title" required/>
+              <span style="color:red" ng-show="myForm.title.$dirty && myForm.title.$invalid">
+              <span ng-show="myForm.title.$error.required">title is required.</span>
+              </span>
+      </md-input-container>
+    </div>
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="year" class="control-label col-sm-2">Release Year</label>
+        <input type="text" ng-model="movie.releaseYear" class="form-control" id="year" required/>
+              <span style="color:red" ng-show="myForm.year.$dirty && myForm.year.$invalid">
+              <span ng-show="myForm.year.$error.required">year is required.</span>
+              </span>
+      </md-input-container>
+    </div>
+
+
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="director" class="control-label col-sm-2">Director</label>
+        <input type="text" ng-model="movie.director" class="form-control" id="director" class="form-control" required/>
+              <span style="color:red" ng-show="myForm.director.$dirty && myForm.director.$invalid">
+              <span ng-show="myForm.director.$error.required">Director is required.</span>
+              </span>
+      </md-input-container>
+    </div>
+
+    <div class="form-group">
+      <md-input-container flex="">
+        <label for="plot" class="control-label col-sm-2">Movie Genre</label>
+        <input type="text" ng-model="movie.genre" class="form-control" id="plot"  required/>
+              <span style="color:red" ng-show="myForm.plot.$dirty && myForm.plot.$invalid">
+              <span ng-show="myForm.plot.$error.required">Movie Genre is required.</span>
+              </span>
+      </md-input-container>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <md-button ng-disabled="myForm.$invalid" class="md-raised md-primary" ng-click="saveMovie()" ng-bind="movie._id ? 'Update' : 'Save'"></md-button>
+        <!--<input type="button" value="Save" ng-click="saveContact()" />-->
+      </div>
+    </div>
+  </form>
+
+</md-content>
+
+<!--
 <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
@@ -26,4 +92,4 @@
     <div class="col-sm-offset-2 col-sm-10">
         <input type="submit" class="btn btn-primary" value="Save"/>
     </div>
-</div>
+</div>-->
