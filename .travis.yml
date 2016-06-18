@@ -1,0 +1,28 @@
+language: node_js
+
+sudo: false
+
+node_js:
+  - "0.11"
+
+before_script:
+  - npm install -g bower
+  - npm install -g gulp
+  - npm install phantomjs
+  - npm install -g karma
+  - bower install
+  - gulp build
+
+
+script: gulp
+
+os:
+  - linux
+
+branches:
+  only:
+  - master
+
+notifications:
+  email:
+  - i@ff36.co
