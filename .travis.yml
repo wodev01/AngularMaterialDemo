@@ -13,7 +13,6 @@ before_script:
   - bower install
   - gulp build
 
-
 script: gulp
 
 os:
